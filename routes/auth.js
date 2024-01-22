@@ -9,7 +9,6 @@ router
     try {
       const { username, role, email, password } = req.body;
 
-      // Check if a user with the same email or username already exists
       const existingUser = await User.findOne({
         $or: [{ email }, { username }],
       });
@@ -19,7 +18,6 @@ router
           .status(400)
           .json({ message: "User with this email or username already exists" });
       }
-    
 
       const newUser = new User({ username, role, email, password });
       const saveUser = await newUser.save();

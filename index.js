@@ -7,7 +7,7 @@ require('dotenv').config()
 const port = 5000;
 
 const authRouter = require("./routes/auth");
-
+const propertyRouter = require('./routes/propertyRoute');
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.json());
@@ -17,7 +17,7 @@ app.use(cors())
 // routes
 
 app.use("/api/auth", authRouter);
-
+app.use('/api', propertyRouter);
 
 app.get("/api",(req,res)=>{
     res.send("Server is running");

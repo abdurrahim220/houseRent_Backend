@@ -1,6 +1,6 @@
 // propertySchema.js
 
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const propertySchema = new mongoose.Schema({
   name: {
@@ -24,18 +24,20 @@ const propertySchema = new mongoose.Schema({
     required: true,
   },
   roomSize: {
-    type: String,
+    type: number,
     required: true,
   },
-  picture: {
-    type: String,
-    required: true,
-  },
-  availabilityDate: {
+  // imageUrls: [
+  //   {
+  //     type: String, // Assuming you store file paths or URLs as strings
+  //     required: true,
+  //   },
+  // ],
+  availability: {
     type: Date,
     required: true,
   },
-  rentPerMonth: {
+  rent: {
     type: Number,
     required: true,
   },
@@ -44,11 +46,14 @@ const propertySchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: function (v) {
-        return /\d{11}/.test(v);
+        return /\d{11}/.test(v); // Assuming phone numbers should be 11 digits long
       },
-      message: (props) =>
-        `${props.value} is not a valid Bangladeshi phone number!`,
+      message: props => `${props.value} is not a valid 11-digit phone number!`,
     },
+  },
+  starRating: {
+    type: Number,
+    required: true,
   },
   description: {
     type: String,
@@ -56,6 +61,6 @@ const propertySchema = new mongoose.Schema({
   },
 });
 
-const Property = mongoose.model("Property", propertySchema);
+const Property = mongoose.model('Property', propertySchema);
 
 module.exports = Property;

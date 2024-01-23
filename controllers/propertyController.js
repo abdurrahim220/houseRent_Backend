@@ -1,6 +1,4 @@
-
 const Property = require("../models/property");
-
 
 exports.createProperty = async (req, res) => {
   try {

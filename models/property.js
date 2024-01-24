@@ -24,7 +24,7 @@ const propertySchema = new mongoose.Schema({
     required: true,
   },
   roomSize: {
-    type: number,
+    type: Number,
     required: true,
   },
   // imageUrls: [

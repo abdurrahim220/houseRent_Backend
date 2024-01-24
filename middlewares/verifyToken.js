@@ -1,18 +1,24 @@
+
+
 const jwt = require("jsonwebtoken");
 
-const verifyToken = (req,res,next)=>{
-    const token = req.cookies.token;
-    if(!token){
-        return res.status(401).json("You are not authenticated!!")
-    }
-    jwt.verify(token,process.env.SECRET,async(err,data)=>{
-        if(err){
-            return res.status(403).json("Token is not valid")
-        }
-        req.userId=data._id;
-        // console.log("Passed")
-        next()
-    })
-}
+const verifyToken = (req, res, next) => {
+    const token = req.cookies && req.cookies["auth_token"];
+    // console.log(token)
 
-module.exports=verifyToken;
+    if (!token) {
+        return res.status(401).json({ message: "unauthorized" });
+    }
+
+    try {
+        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        req.userId = decoded.userId;
+        console.log(req.userId )
+        next();
+    } catch (error) {
+        return res.status(401).json({ message: "unauthorized" });
+    }
+};
+
+module.exports = verifyToken;
+

@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 const userRouter = require("./routes/newAuth");
 const propertyRouter = require('./routes/propertyRoute');
 
+const bookingRoutes = require('./routes/booking');
 
 
 app.use(cookieParser())
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 
+app.use('/api', bookingRoutes);
 app.use("/api/auth", userRouter);
 app.use('/api', propertyRouter);
 

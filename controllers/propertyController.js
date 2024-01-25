@@ -3,6 +3,7 @@ const Property = require("../models/property");
 exports.createProperty = async (req, res) => {
   try {
     const property = new Property(req.body);
+    console.log(property)
     await property.save();
     res.status(201).json(property);
   } catch (error) {

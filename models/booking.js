@@ -26,7 +26,7 @@ const bookingSchema = new mongoose.Schema({
   },
   // imageUrls: [
   //   {
-  //     type: String, // Assuming you store file paths or URLs as strings
+  //     type: String,
   //
   //   },
   // ],
@@ -36,12 +36,15 @@ const bookingSchema = new mongoose.Schema({
   rent: {
     type: Number,
   },
+  userNumber: {
+    type: Number,
+  },
   phoneNumber: {
     type: String,
 
     validate: {
       validator: function (v) {
-        return /\d{11}/.test(v); // Assuming phone numbers should be 11 digits long
+        return /\d{11}/.test(v); 
       },
       message: (props) =>
         `${props.value} is not a valid 11-digit phone number!`,

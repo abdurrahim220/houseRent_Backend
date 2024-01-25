@@ -13,7 +13,7 @@ router.post("/bookings", async (req, res) => {
 
     res.status(201).json(newHouse);
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
@@ -34,21 +34,27 @@ router.delete("/bookings/:id", async (req, res) => {
 
     res.json(deletedHouse);
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
 router.get('/bookings', async (req, res) => {
-    try {
-      // Retrieve all house bookings from the database
-      const allBookings = await House.find();
-  
-      res.json(allBookings);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  });
+  try {
+    const { email } = req.query;
+
+    
+    const filter = email ? { email } : {};
+
+    
+    const filteredBookings = await House.find(filter);
+
+    res.json(filteredBookings);
+  } catch (error) {
+    // Handle errors
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 module.exports = router;

@@ -1,6 +1,6 @@
 // propertySchema.js
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const propertySchema = new mongoose.Schema({
   name: {
@@ -11,9 +11,14 @@ const propertySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
   city: {
     type: String,
     required: true,
+  },
+  email: {
+    type: String,
+    required: false,
   },
   bedrooms: {
     type: Number,
@@ -48,7 +53,8 @@ const propertySchema = new mongoose.Schema({
       validator: function (v) {
         return /\d{11}/.test(v); // Assuming phone numbers should be 11 digits long
       },
-      message: props => `${props.value} is not a valid 11-digit phone number!`,
+      message: (props) =>
+        `${props.value} is not a valid 11-digit phone number!`,
     },
   },
   starRating: {
@@ -61,6 +67,6 @@ const propertySchema = new mongoose.Schema({
   },
 });
 
-const Property = mongoose.model('Property', propertySchema);
+const Property = mongoose.model("Property", propertySchema);
 
 module.exports = Property;

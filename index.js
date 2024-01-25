@@ -14,7 +14,7 @@ const bookingRoutes = require('./routes/booking');
 app.use(cookieParser())
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin:"https://65b21389b5f2a23c3abb5313--gentle-sprinkles-7fc787.netlify.app",credentials:true}))
 
 
 app.use('/api', bookingRoutes);

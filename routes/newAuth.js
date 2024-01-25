@@ -40,7 +40,7 @@ router.post("/login", async (req, res) => {
       .status(200)
       .json({ userId: user.id, username: user.username, email: user.email,role:user.role });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: "Something went wrong" });
   }
 });

@@ -15,7 +15,7 @@ app.use(cookieParser())
 
 app.use(express.json());
 // app.use(cors())
-app.use(cors({origin:"https://gentle-sprinkles-7fc787.netlify.app/",credentials:true}))
+app.use(cors({origin:"https://gentle-sprinkles-7fc787.netlify.app",credentials:true}))
 
 
 app.use('/api', bookingRoutes);
